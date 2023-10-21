@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in || Sign up from</title>
+     <!-- font awesome icons -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./thapar" type="image/x-icon">
+</head>
+<body>
+    <h2>CENTRAL BANK Of THAPAR</h2>
+    <img src="" alt="">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#" name="submit-to-google-sheet">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <div class="infield">
+                    <input type="text" placeholder="First Name" name="First"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="text" placeholder="Last Name" name="Last"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="Email"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="text" placeholder="Mobile Number" name="Mobile"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="date" placeholder="file" name="File"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" name="Password"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <select class="x" placeholder="Choose Gender">
+                        <option value="volvo">Gender</option>
+                        <option value="volvo">Male</option>
+                        <option value="saab">Female</option>
+                        <option value="opel">Prefer not to say</option>
+                    </select>
+                    <label></label>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#" name="submit-to-google-sheet2">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="Email"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" name="Password"/>
+                    <label></label>
+                </div>
+               
+                <a href="#" class="forgot">Forgot your password?</a>
+                <button type="submit">Sign In</button>
+            </form> 
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button>Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button>Sign Up</button>
+                </div>
+            </div>
+            <button id="overlayBtn"></button>
+        </div>
+    </div>
+    <div id="cursor"></div>
+    <script src="app.js"></script>
+</body>
+</html>
