@@ -33,31 +33,37 @@ contract SignatureVerification {
         _;
     }
 
-    function registerUser(
-        User memory u
-    ) public {
+    function AddUser(
+    string memory _username,
+    string memory _firstname,
+    string memory _lastname,
+    string memory _email,
+    string memory _mobileNumber,
+    string memory _dob,
+    string memory _password,
+    string memory _gender) public{
         require(!users[msg.sender].isRegistered, "User is already registered.");
 
         // Use keccak256 for case-insensitive email comparison
-        require(keccak256(abi.encodePacked(users[msg.sender].email)) != keccak256(abi.encodePacked(u.email)), "Email is already registered.");
+        require(keccak256(abi.encodePacked(users[msg.sender].email)) != keccak256(abi.encodePacked(_email)), "Email is already registered.");
 
         // Hash the password before storing it
-        bytes32 hashedPassword = keccak256(abi.encodePacked(u.passwordHash));
-
+        bytes32 hashedPassword = keccak256(abi.encodePacked(_password));
         users[msg.sender] = User({
-            username: u.username,
-            firstName: u.firstName,
-            lastName: u.lastName,
-            email: u.email,
-            mobileNumber: u.mobileNumber,
-            dob: u.dob,
+            username: _username,
+            firstName: _firstname,
+            lastName: _lastname,
+            email: _email,
+            mobileNumber: _mobileNumber,
+            dob: _dob,
             passwordHash: hashedPassword, // Update the field to hashed password
-            gender: u.gender,
+            gender: _gender,
             ipfsSignatureHash: "",
             isRegistered: true
         });
+        
 
-        emit UserRegistered(msg.sender, u.username);
+        emit UserRegistered(msg.sender, _username);
     }
 
     function uploadSignature(string memory _ipfsSignatureHash) public {
