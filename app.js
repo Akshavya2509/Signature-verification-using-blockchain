@@ -88,7 +88,8 @@ async function registerUser(username, firstName, lastName, email, mobileNumber, 
         await contract.methods.registerUser(
             username, firstName, lastName, email, mobileNumber, dob, passwordHash, gender
         ).send({ from: accounts[0] });
-
+        
+        console.log(await contract.methods.getDetails());
         console.log('User registered successfully.');
     } catch (error) {
         console.error('Error registering user:', error);
