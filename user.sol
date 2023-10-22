@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.16;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.8.0;
 
 contract SignatureVerification {
     address public owner;
@@ -24,7 +23,7 @@ contract SignatureVerification {
     event SignatureUploaded(address indexed userAddress, string ipfsSignatureHash);
     event UserLoggedIn(address indexed userAddress);
 
-    constructor() public{
+    constructor(){
         owner = msg.sender;
     }
 
@@ -33,35 +32,36 @@ contract SignatureVerification {
         _;
     }
 
-    function AddUser(
-    string memory _username,
-    string memory _firstname,
-    string memory _lastname,
-    string memory _email,
-    string memory _mobileNumber,
-    string memory _dob,
-    string memory _password,
-    string memory _gender) public{
+    function registerUser(
+        string memory _username,
+        string memory _firstName,
+        string memory _lastName,
+        string memory _email,
+        string memory _mobileNumber,
+        string memory _dob,
+        string memory _passwordHash,
+        string memory gender
+    ) public {
         require(!users[msg.sender].isRegistered, "User is already registered.");
 
         // Use keccak256 for case-insensitive email comparison
         require(keccak256(abi.encodePacked(users[msg.sender].email)) != keccak256(abi.encodePacked(_email)), "Email is already registered.");
 
         // Hash the password before storing it
-        bytes32 hashedPassword = keccak256(abi.encodePacked(_password));
+        bytes32 hashedPassword = keccak256(abi.encodePacked(_passwordHash));
+
         users[msg.sender] = User({
             username: _username,
-            firstName: _firstname,
-            lastName: _lastname,
+            firstName: _firstName,
+            lastName: _lastName,
             email: _email,
             mobileNumber: _mobileNumber,
             dob: _dob,
             passwordHash: hashedPassword, // Update the field to hashed password
-            gender: _gender,
+            gender: gender,
             ipfsSignatureHash: "",
             isRegistered: true
         });
-        
 
         emit UserRegistered(msg.sender, _username);
     }
@@ -89,6 +89,10 @@ contract SignatureVerification {
         emit UserLoggedIn(msg.sender);
     }
 
+    function getdetails() public view returns(string memory,string memory,string memory,string memory,string memory,string memory,string memory){
+        require(users[msg.sender].isRegistered, "User is not registered.");
+        return (users[msg.sender].username, users[msg.sender].firstName, users[msg.sender].lastName, users[msg.sender].email, users[msg.sender].mobileNumber, users[msg.sender].dob, users[msg.sender].gender);
+    }
     // Add other functions as needed for your application
 
     function transferOwnership(address newOwner) public onlyOwner {
